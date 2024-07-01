@@ -1,1 +1,34 @@
+------------------DATE:01/07/2024---------------------------
 
+P1: AND IS EQUAL TO OR[TC:O(N), SC:O(1)]
+
+from typing import List
+
+
+class Solution:
+
+    def ANDequalOR(self, n: int, arr: List[int]) -> int:
+
+        ans = 0
+
+        pre = 0
+
+        count = 0
+
+        for i in range(n):
+
+            if arr[i] == arr[pre]:
+
+                count += 1
+
+            else:
+
+                ans += (count * (count + 1)) // 2
+
+                pre = i
+
+                count = 1
+
+        ans += (count * (count + 1)) // 2
+
+        return ans
