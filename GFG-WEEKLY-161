@@ -32,3 +32,42 @@ class Solution:
         ans += (count * (count + 1)) // 2
 
         return ans
+
+P2:Min Size of array[TC:O(N), SC:O(1)]
+
+from typing import List
+
+class Solution:
+    #Function to find minimum size of majority element
+    def MinSize(self, n: int, A: List[int]) -> int:
+        #find majority element which may occur more than n/2 (Boyer-Moore Majority Voting Algorithm)
+        curr = A[0]
+
+        count = 1
+
+for i in range(1, n):
+
+            if A[i] == curr:
+
+                count += 1
+
+            else:
+
+                count -= 1
+
+                if count == 0:
+
+                    curr = A[i]
+
+                    count = 1
+
+        max_f = A.count(curr)
+
+        if max_f <= (n + 1) // 2:
+
+            return n & 1
+
+        else:
+
+            return 2 * max_f - n
+
