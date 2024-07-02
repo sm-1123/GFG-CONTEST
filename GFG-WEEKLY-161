@@ -71,3 +71,45 @@ for i in range(1, n):
 
             return 2 * max_f - n
 
+------------------DATE:02/07/2024------------------------------------------
+
+P3:Max Difference Cool Prime[TC:O(N), SC:O(1)]
+
+from typing import List
+from math import gcd
+
+
+class Solution:
+
+    def MaxDiff(self, n: int, A: List[int]) -> int:
+        
+        mx = [-1] * 1001
+
+        mn = [n + 1] * 1001
+
+        for i in range(n):
+
+            mx[A[i]] = max(mx[A[i]], i)
+
+            mn[A[i]] = min(mn[A[i]], i)
+
+        ans = -1
+
+        for i in range(1, 1001):
+
+            for j in range(i, 1001):
+
+                era = gcd(i, j)
+
+                if era != 1:
+
+                    continue
+
+                if mx[i] != -1 and mx[j] != -1:
+
+                    ans = max(ans, abs(mx[i] - mn[j]))
+
+                    ans = max(ans, abs(mx[j] - mn[i]))
+
+        return ans
+
